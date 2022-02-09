@@ -5,10 +5,7 @@ import hashlib
 import time
 import os
 from telethon import TelegramClient, events
-from dotenv import load_dotenv
 from signal_converter import msg_to_signal
-
-load_dotenv()
 
 api_id = os.getenv('TG_API_ID')
 api_hash = os.getenv('TG_API_HASH')

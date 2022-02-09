@@ -1,0 +1,9 @@
+version: '3.8'
+services: 
+  tg-msg-reader:
+    container_name: tg-msg-reader_container
+    hostname: tg-msg-reader_container
+    image: "tg-msg-reader"
+    environment:
+      - TG_API_ID="TEST"
+      - TG_API_HASH="TEST2"
