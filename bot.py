@@ -18,8 +18,8 @@ client = TelegramClient(StringSession(session_string), api_id, api_hash)
 async def my_event_handler(message):
     msg = message.text
     signal = msg_to_signal(msg)
-    print(signal)
+    print(signal, flush=True)
 
-
-client.start()
-client.run_until_disconnected()
+with client:
+    print(f'listening on {api_id}', flush=True)
+    client.run_until_disconnected()

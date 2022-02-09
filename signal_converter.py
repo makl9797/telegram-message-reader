@@ -6,7 +6,7 @@ class Signal:
         self.risk = risk
 
     def __repr__(self):
-        return "This is object of class A"
+        return "This is a signal."
 
     def __str__(self):
         output = "{asset: %s, ordertype: %s, duration: %s, risk: %s" % (
