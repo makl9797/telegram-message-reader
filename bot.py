@@ -5,40 +5,13 @@ import hashlib
 import time
 import os
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 from signal_converter import msg_to_signal
 
 api_id = int(os.getenv('TG_API_ID'))
 api_hash = os.getenv('TG_API_HASH')
-client = TelegramClient('session', api_id, api_hash)
-
-
-api_key = os.getenv('KC_API_KEY')
-api_secret = os.getenv('KC_API_SECRET')
-api_passphrase = 'signal_bot'
-method = 'GET'
-endpoint = '/api/v1/orders'
-
-
-def get_headers(method, endpoint):
-    now = int(time.time() * 1000)
-    str_to_sign = str(now) + method + endpoint
-    signature = base64.b64encode(hmac.new(
-        api_secret.encode(), str_to_sign.encode(), hashlib.sha256).digest()).decode()
-    passphrase = base64.b64encode(hmac.new(api_secret.encode(
-    ), api_passphrase.encode(), hashlib.sha256).digest()).decode()
-    return {'KC-API-KEY': api_key,
-            'KC-API-KEY-VERSION': '2',
-            'KC-API-PASSPHRASE': passphrase,
-            'KC-API-SIGN': signature,
-            'KC-API-TIMESTAMP': str(now)
-            }
-
-
-r = requests.get('https://api.kucoin.com/api/v1/orders',
-                 headers=get_headers(method, endpoint))
-
-
-print(r.json())
+session_string = os.getenv('TG_SESSION_STRING')
+client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
 
 @client.on(events.NewMessage(chats=-1001753918408, incoming=True, pattern='\[Spots]'))

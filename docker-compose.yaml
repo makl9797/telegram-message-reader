@@ -1,8 +1,10 @@
 version: '3.8'
 services: 
   tg-msg-reader:
+    build: 
+      context: .
     container_name: tg-msg-reader_container
     hostname: tg-msg-reader_container
-    image: "tg-msg-reader"
     env_file:
       - .env
+    command: python3 bot.py
