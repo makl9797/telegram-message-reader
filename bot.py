@@ -7,7 +7,7 @@ import os
 from telethon import TelegramClient, events
 from signal_converter import msg_to_signal
 
-api_id = os.getenv('TG_API_ID')
+api_id = int(os.getenv('TG_API_ID'))
 api_hash = os.getenv('TG_API_HASH')
 client = TelegramClient('session', api_id, api_hash)
 

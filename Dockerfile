@@ -1,7 +1,6 @@
 FROM python
 
-ADD bot.py .
-ADD signal_converter.py .
+COPY . .
 
 RUN pip install requests telethon
 

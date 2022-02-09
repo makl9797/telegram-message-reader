@@ -4,6 +4,5 @@ services:
     container_name: tg-msg-reader_container
     hostname: tg-msg-reader_container
     image: "tg-msg-reader"
-    environment:
-      - TG_API_ID="TEST"
-      - TG_API_HASH="TEST2"
+    env_file:
+      - .env
